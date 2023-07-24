@@ -43,10 +43,10 @@ const validateInput = function (input) {
     if (input.length === 0) {
         message.innerText = "Please enter a letter.";
     
-    }   else if (input.length >1) {
-        message.innerText = "Please enter one letter";
+    }   else if (input.length > 1) {
+        message.innerText = "Please enter one letter.";
     }
-        else if (input.match(acceptedLetter)) {
+        else if (!input.match(acceptedLetter)) {
             message.innerText = "Please enter a letter from A-Z.";
     }   else {
         return input;
@@ -56,7 +56,7 @@ const validateInput = function (input) {
 const makeGuess = function (guess) {
     guess = guess.toUppercase();
     if (guessedLetters.includes(guess)) {
-        guess.innerText = "You've already guessed that letter. Try again";
+        message.innerText = "You've already guessed that letter. Try again.";
     }   else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
