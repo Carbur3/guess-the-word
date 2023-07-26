@@ -8,8 +8,8 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again");
 
 const word = "magnolia";
-
 const guessedLetters = [];
+const remainingGuesses = 8;
 
 const placeholder = function (word) {
     const placeholderLetters = [];
@@ -60,6 +60,7 @@ const makeGuess = function (guess) {
     }   else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
+        updateGuessesRemaining(guess);
         showGuessedLetters();
         updateWordInProgress(guessedLetters);
         //console.log(guessedLetters);
@@ -94,9 +95,29 @@ const updateWordInProgress = function (guessedLetters) {
 
 };
 
+const updateGuessesRemaining = function (guess) {
+    const upperWord = word.toUpperCase();
+    if(!upperWord.includes(guess)) {
+        message.innerText = "Sorry, the word does not contain ${guess}.";
+        remainingGuesses = -1;
+    }   else {
+        message.innerText = "Good guess! The word has the letter ${guess}.";
+    }
+
+    if(remainingGuesses === 0) {
+        message.innerText = `Game over. The word was  <span class="highlight">${word}</span>`;
+    }   else if(remainingGuesses === 1) {
+        remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
+    }   else {
+        remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
+    }
+};
+
 const didYouWin = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
         message.classList.add("win");
         message.innerHTML = `<p class = "highlight">You guessed the correct word! Congrats!</p>`;
     }
 };
+
+
