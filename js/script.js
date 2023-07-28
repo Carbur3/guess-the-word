@@ -108,10 +108,10 @@ const updateWordInProgress = function (guessedLetters) {
 const updateGuessesRemaining = function (guess) {
     const upperWord = word.toUpperCase();
     if(!upperWord.includes(guess)) {
-        message.innerText = "Sorry, the word does not contain ${guess}.";
+        message.innerText = `Sorry, the word does not contain ${guess}.`;
         remainingGuesses -= 1;
     }   else {
-        message.innerText = "Good guess! The word has the letter ${guess}.";
+        message.innerText = `Good guess! The word has the letter ${guess}.`;
     }
 
     if(remainingGuesses === 0) {
